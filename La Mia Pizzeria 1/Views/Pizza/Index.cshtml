@@ -1,8 +1,26 @@
-﻿@*
-   
-*@
-@{
-    Layout = "_PizzaPageLayout";
-}
+﻿
+@model List<Pizza>
+@if(Model.Count == 0)
+{
+    <h3>Non ci sono Pizze da Visualizzare!</h3>
+} else
+{
+    <div class="container pb-lg-5">
 
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            @foreach(Pizza element in Model){
+                <div class="col">
+                    <div class="card">
+                        <img style="aspect-ratio: 4/3" src=@element.Image class="card-img-top" alt="PizzaImage">
+                        <div class="card-body">
+                            <h5 class="card-title">@element.Title</h5>
+                            <p class="card-text">@element.Description</p>
+                            <a class="btn btn-primary" href="@Url.Action("Details", "Pizza", new { id = @element.Id } )" role="button">Dettagli</a>
+                        </div>
+                    </div>
+                </div>
+            }        
+         </div>
+    </div>
+}
 
